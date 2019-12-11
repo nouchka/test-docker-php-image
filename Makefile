@@ -10,4 +10,4 @@ build-version:
 .PHONY: build
 build:
 	$(foreach version,$(VERSIONS), $(MAKE) -s build-version VERSION=$(version);)
-	docker image ls|grep "test/redis"
+	docker image ls --format '{{ .Tag }}\t{{ .Size}}' test/redis|sort -k2
